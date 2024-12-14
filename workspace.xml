@@ -10,17 +10,22 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="CSS File" />
+        <option value="JavaScript File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 3
-}]]></component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP" />
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
   <component name="ProjectId" id="2qAEpZLW8Jjp1jEH9uEEr1f45L2" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -29,11 +34,18 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "DefaultHtmlFileTemplate": "HTML File",
+    "JavaScript Debug.404.html.executor": "Run",
+    "JavaScript Debug.Formularz kontaktowy.html.executor": "Run",
     "JavaScript Debug.about.html.executor": "Run",
+    "JavaScript Debug.account.html.executor": "Run",
     "JavaScript Debug.destinations.html.executor": "Run",
     "JavaScript Debug.index.html.executor": "Run",
+    "JavaScript Debug.login.html.executor": "Run",
+    "JavaScript Debug.register.html.executor": "Run",
+    "Node.js.server.js.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/xaamp/php/php.exe",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -43,6 +55,14 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration name="server.js" type="NodeJSConfigurationType" path-to-js-file="server.js" working-dir="$PROJECT_DIR$/.idea">
+      <EXTENSION ID="com.intellij.lang.javascript.buildTools.npm.rc.StartBrowserRunConfigurationExtension">
+        <browser url="http://localhost:3000" />
+      </EXTENSION>
+      <method v="2" />
+    </configuration>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -60,7 +80,16 @@
       <option name="presentableId" value="Default" />
       <updated>1734097168833</updated>
       <workItem from="1734097169865" duration="566000" />
-      <workItem from="1734102075973" duration="1412000" />
+      <workItem from="1734102075973" duration="6979000" />
+      <workItem from="1734123989949" duration="7929000" />
+      <workItem from="1734136040512" duration="529000" />
+      <workItem from="1734136595830" duration="314000" />
+      <workItem from="1734137365509" duration="119000" />
+      <workItem from="1734140721282" duration="881000" />
+      <workItem from="1734143326604" duration="511000" />
+      <workItem from="1734143849910" duration="612000" />
+      <workItem from="1734144539641" duration="1151000" />
+      <workItem from="1734147566054" duration="1892000" />
     </task>
     <servers />
   </component>
