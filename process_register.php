@@ -1,7 +1,5 @@
 <?php
-header('Content-Type: application/json');
-
-// Database connection
+// Подключение к базе данных
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -9,64 +7,33 @@ $dbname = "user_registration";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check connection
+// Проверяем подключение
 if ($conn->connect_error) {
-  die(json_encode(['success' => false, 'message' => "Connection failed: " . $conn->connect_error]));
+  die("Ошибка подключения: " . $conn->connect_error);
 }
 
-// Process form data
+// Обработка данных формы
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  $username = trim($_POST['username']);
+  $username = $_POST['username'];
   $password = $_POST['password'];
-  $email = trim($_POST['email']);
+  $email = $_POST['email'];
 
-  // Server-side validation
-  if (strlen($username) < 3) {
-    echo json_encode(['success' => false, 'message' => 'Username must be at least 3 characters long.']);
-    exit;
-  }
+  // Хеширование пароля
+  $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-  if (strlen($password) < 6) {
-    echo json_encode(['success' => false, 'message' => 'Password must be at least 6 characters long.']);
-    exit;
-  }
+  // SQL-запрос для добавления данных
+  $sql = "INSERT INTO users (username, password, email) VALUES (?, ?, ?)";
+  $stmt = $conn->prepare($sql);
+  $stmt->bind_param("sss", $username, $hashed_password, $email);
 
-  if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    echo json_encode(['success' => false, 'message' => 'Invalid email format.']);
-    exit;
-  }
-
-  // Check if username or email already exists
-  $check_query = "SELECT * FROM users WHERE username = ? OR email = ?";
-  $stmt_check = $conn->prepare($check_query);
-  $stmt_check->bind_param("ss", $username, $email);
-  $stmt_check->execute();
-  $result = $stmt_check->get_result();
-
-  if ($result->num_rows > 0) {
-    echo json_encode(['success' => false, 'message' => 'Username or email already exists.']);
+  if ($stmt->execute()) {
+    echo "Регистрация прошла успешно!";
   } else {
-    // Hash password
-    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-    // SQL query to add new user
-    $sql = "INSERT INTO users (username, password, email) VALUES (?, ?, ?)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sss", $username, $hashed_password, $email);
-
-    if ($stmt->execute()) {
-      echo json_encode(['success' => true, 'message' => 'Registration successful!']);
-    } else {
-      echo json_encode(['success' => false, 'message' => 'Error: ' . $stmt->error]);
-    }
-
-    $stmt->close();
+    echo "Ошибка: " . $stmt->error;
   }
 
-  $stmt_check->close();
+  $stmt->close();
 }
-
 $conn->close();
 ?>
-
 
