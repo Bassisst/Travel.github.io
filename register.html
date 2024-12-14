@@ -24,7 +24,8 @@
   <div class="screen">
     <div class="screen__content">
       <!-- Registration form -->
-      <form id="registerForm" class="login" action="https://formspree.io/f/your-formspree-endpoint" method="POST">
+      <form id="registerForm" class="login" method="POST" data-netlify="true" name="registration">
+        <input type="hidden" name="form-name" value="registration">
         <!-- Username field -->
         <div class="login__field">
           <i class="login__icon fas fa-user"></i>
