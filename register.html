@@ -2,53 +2,58 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Register</title>
   <link href="login.css" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
-<!-- Nawigacja menu -->
+<!-- Navigation menu -->
 <nav class="navbar">
   <ul class="nav-links">
     <li class="nav-item"><a href="index.html">Home</a></li>
     <li class="nav-item"><a href="destinations.html">Destinations</a></li>
     <li class="nav-item"><a href="about.html">About</a></li>
-    <li class="nav-item"><a href="Formularz kontaktowy.html">Formularz kontaktowy</a></li>
+    <li class="nav-item"><a href="contact_form.html">Contact Form</a></li>
   </ul>
 </nav>
 
-<!-- Kontener główny -->
+<!-- Main container -->
 <div class="container">
   <div class="screen">
     <div class="screen__content">
-      <!-- Formularz rejestracji -->
-      <form id="registerForm" class="login" method="POST" action="process_register.php">
-        <!-- Поле на имя пользователя -->
+      <!-- Registration form -->
+      <form id="registerForm" class="login">
+        <!-- Username field -->
         <div class="login__field">
           <i class="login__icon fas fa-user"></i>
-          <input type="text" id="username" name="username" class="login__input" placeholder="User name" required>
+          <input type="text" id="username" name="username" class="login__input" placeholder="Username" required>
         </div>
 
-        <!-- Поле на пароль -->
+        <!-- Password field -->
         <div class="login__field">
           <i class="login__icon fas fa-lock"></i>
           <input type="password" id="password" name="password" class="login__input" placeholder="Password" required>
         </div>
 
-        <!-- Поле на email -->
+        <!-- Email field -->
         <div class="login__field">
           <i class="login__icon fas fa-envelope"></i>
           <input type="email" id="email" name="email" class="login__input" placeholder="Email" required>
         </div>
 
-        <!-- Кнопка регистрации -->
+        <!-- Registration button -->
         <button type="submit" class="button login__submit">
           <span class="button__text">Register now</span>
           <i class="button__icon fas fa-chevron-right"></i>
         </button>
       </form>
 
-      <!-- Ссылка на логин -->
+      <!-- Error message display -->
+      <div id="error-message" class="error-message" style="display: none;"></div>
+
+      <!-- Link to login page -->
       <div class="social-login">
         <a href="login.html" class="register-button">
           <h3>Login now</h3>
@@ -56,7 +61,7 @@
       </div>
     </div>
 
-    <!-- Фон с анимацией -->
+    <!-- Animated background -->
     <div class="screen__background">
       <span class="screen__background__shape screen__background__shape4"></span>
       <span class="screen__background__shape screen__background__shape3"></span>
@@ -65,6 +70,53 @@
     </div>
   </div>
 </div>
+
+<script>
+  document.getElementById('registerForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    const email = document.getElementById('email').value;
+    const errorMessage = document.getElementById('error-message');
+
+    // Basic client-side validation
+    if (username.length < 3) {
+      errorMessage.textContent = 'Username must be at least 3 characters long.';
+      errorMessage.style.display = 'block';
+      return;
+    }
+
+    if (password.length < 6) {
+      errorMessage.textContent = 'Password must be at least 6 characters long.';
+      errorMessage.style.display = 'block';
+      return;
+    }
+
+    try {
+      const response = await fetch('process_register.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}&email=${encodeURIComponent(email)}`
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        window.location.href = 'login.html';
+      } else {
+        errorMessage.textContent = data.message;
+        errorMessage.style.display = 'block';
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      errorMessage.textContent = 'An error occurred. Please try again.';
+      errorMessage.style.display = 'block';
+    }
+  });
+</script>
 
 </body>
 </html>
