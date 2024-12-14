@@ -6,6 +6,18 @@
   <title>Register</title>
   <link href="login.css" rel="stylesheet">
   <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+  <style>
+    .error-message {
+      color: #ff0000;
+      margin-top: 10px;
+      text-align: center;
+    }
+    .success-message {
+      color: #00ff00;
+      margin-top: 10px;
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
 
@@ -24,8 +36,7 @@
   <div class="screen">
     <div class="screen__content">
       <!-- Registration form -->
-      <form id="registerForm" class="login" method="POST" data-netlify="true" name="registration">
-        <input type="hidden" name="form-name" value="registration">
+      <form id="registerForm" class="login">
         <!-- Username field -->
         <div class="login__field">
           <i class="login__icon fas fa-user"></i>
@@ -51,8 +62,8 @@
         </button>
       </form>
 
-      <!-- Error message display -->
-      <div id="error-message" class="error-message" style="display: none;"></div>
+      <!-- Message display -->
+      <div id="message" class="message" role="alert" aria-live="assertive"></div>
 
       <!-- Link to login page -->
       <div class="social-login">
@@ -72,33 +83,9 @@
   </div>
 </div>
 
-<script>
-document.getElementById('registerForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-  
-  const username = document.getElementById('username').value;
-  const password = document.getElementById('password').value;
-  const email = document.getElementById('email').value;
-  const errorMessage = document.getElementById('error-message');
-
-  // Basic client-side validation
-  if (username.length < 3) {
-    errorMessage.textContent = 'Username must be at least 3 characters long.';
-    errorMessage.style.display = 'block';
-    return;
-  }
-
-  if (password.length < 6) {
-    errorMessage.textContent = 'Password must be at least 6 characters long.';
-    errorMessage.style.display = 'block';
-    return;
-  }
-
-  // If validation passes, submit the form
-  this.submit();
-});
-</script>
+<script src="register.js"></script>
 
 </body>
 </html>
+
 
