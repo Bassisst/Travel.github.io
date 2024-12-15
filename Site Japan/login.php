@@ -8,7 +8,7 @@ $dbname = "aarele_database";
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 if ($conn->connect_error) {
-  die("Ошибка подключения: " . $conn->connect_error);
+  die("Błąd połączenia: " . $conn->connect_error);
 }
 
 $response = ['success' => false, 'message' => ''];
@@ -31,10 +31,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $response['success'] = true;
       $response['message'] = "Login successful";
     } else {
-      $response['message'] = "Неверный пароль";
+      $response['message'] = "Nieprawidłowe hasło";
     }
   } else {
-    $response['message'] = "Пользователь не найден";
+    $response['message'] = "Nie znaleziono użytkownika";
   }
   $stmt->close();
 }

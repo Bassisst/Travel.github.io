@@ -62,14 +62,12 @@ nav ul li a:hover {
   color: #ffd700;
 }
 
-/* Main content styles */
 main {
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
 }
 
-/* Hero section */
 #hero {
   text-align: center;
   padding: 4rem 0;
@@ -83,7 +81,6 @@ main {
   margin-bottom: 1rem;
 }
 
-/* Intro section */
 #intro {
   background-color: #fff;
   padding: 2rem;
@@ -92,7 +89,6 @@ main {
   margin-bottom: 2rem;
 }
 
-/* Feature sections */
 .feature {
   background-color: #fff;
   padding: 2rem;
@@ -117,7 +113,6 @@ main {
   margin-bottom: 1rem;
 }
 
-/* Community section */
 #community {
   background-color: #fff;
   padding: 2rem;
@@ -142,7 +137,6 @@ main {
   background-color: #ff3333;
 }
 
-/* Footer styles */
 footer {
   background-color: #333;
   color: #fff;

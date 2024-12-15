@@ -45,6 +45,12 @@ body {
   min-height: 100vh;
 }
 
+.registration-message {
+  margin-top: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+
 .screen {
   background: linear-gradient(90deg, #FADADD, #F5B7C2);
   position: relative;

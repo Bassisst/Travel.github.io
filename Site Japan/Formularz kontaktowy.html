@@ -1,19 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home</title>
+  <title>Formularz kontaktowy</title>
   <link href="formularz.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 <!-- Nawigacja menu -->
 <nav class="navbar">
   <ul class="nav-links">
-    <li class="nav-item"><a href="index.html">Home</a></li>
-    <li class="nav-item"><a href="destinations.html">Destinations</a></li>
-    <li class="nav-item"><a href="about.html">About</a></li>
-    <li class="nav-item"><a href="register.html">Registations</a> </li>
+    <li class="nav-item"><a href="index.html">Strona główna</a></li>
+    <li class="nav-item"><a href="destinations.html">Destynacje</a></li>
+    <li class="nav-item"><a href="about.html">O nas</a></li>
+    <li class="nav-item"><a href="register.html">Rejestracja</a></li>
   </ul>
 </nav>
 
@@ -40,39 +41,64 @@
         <div class="screen-body-item left">
           <!-- Tytuł aplikacji -->
           <div class="app-title">
-            <span>CONTACT</span>
-            <span>US</span>
+            <span>SKONTAKTUJ</span>
+            <span>SIĘ Z NAMI</span>
           </div>
           <!-- Informacje kontaktowe -->
-          <div class="app-contact">CONTACT INFO : +48 790 819 840</div>
+          <div class="app-contact">KONTAKT : +48 790 819 840</div>
         </div>
 
         <div class="screen-body-item">
-          <div class="app-form">
+          <form id="contactForm" class="app-form">
             <!-- Grupa pól formularza -->
             <div class="app-form-group">
-              <input class="app-form-control" placeholder="NAME" value="Krisantus Wanandi">
+              <input class="app-form-control" name="name" placeholder="IMIĘ I NAZWISKO" required>
             </div>
             <div class="app-form-group">
-              <input class="app-form-control" placeholder="EMAIL">
+              <input class="app-form-control" name="email" type="email" placeholder="EMAIL" required>
             </div>
             <div class="app-form-group">
-              <input class="app-form-control" placeholder="CONTACT NO">
+              <input class="app-form-control" name="phone" placeholder="NUMER TELEFONU">
             </div>
             <div class="app-form-group message">
-              <input class="app-form-control" placeholder="MESSAGE">
+              <input class="app-form-control" name="message" placeholder="WIADOMOŚĆ" required>
             </div>
 
-            <!-- Przycisków formularza -->
+            <!-- Przyciski formularza -->
             <div class="app-form-group buttons">
-              <button class="app-form-button">CANCEL</button>
-              <button class="app-form-button">SEND</button>
+              <button type="button" class="app-form-button" id="cancelButton">ANULUJ</button>
+              <button type="submit" class="app-form-button">WYŚLIJ</button>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<script>
+  $(document).ready(function() {
+    $('#contactForm').on('submit', function(e) {
+      e.preventDefault();
+      $.ajax({
+        type: 'POST',
+        url: 'send_email.php',
+        data: $(this).serialize(),
+        success: function(response) {
+          alert('Wiadomość została wysłana!');
+          $('#contactForm')[0].reset();
+        },
+        error: function() {
+          alert('Wystąpił błąd podczas wysyłania wiadomości. Proszę spróbować ponownie.');
+        }
+      });
+    });
+
+    $('#cancelButton').on('click', function() {
+      $('#contactForm')[0].reset();
+    });
+  });
+</script>
 </body>
 </html>
+
