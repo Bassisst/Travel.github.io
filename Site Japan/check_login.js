@@ -1,16 +1,17 @@
 async function checkLoginStatus() {
   try {
-    const response = await fetch('check_login.php');
+    const response = await fetch('check_session.php');
+    if (!response.ok) {
+      throw new Error('Błąd sieci');
+    }
     const data = await response.json();
-    const myAccountTab = document.getElementById('my-account-tab');
-
     if (data.logged_in) {
-      myAccountTab.style.display = 'block';
+      document.getElementById('my-account-tab').style.display = 'block';
     } else {
-      myAccountTab.style.display = 'none';
+      document.getElementById('my-account-tab').style.display = 'none';
     }
   } catch (error) {
-    console.error('Error checking login status:', error);
+    console.error('Błąd:', error);
   }
 }
 

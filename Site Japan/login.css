@@ -219,7 +219,7 @@ body {
 .register-button:hover,
 .register-button:focus,
 .register-button:active {
-  color: white; /* Цвет остается белым во всех состояниях */
-  text-decoration: none; /* Убираем подчеркивание на всех состояниях */
+  color: white; 
+  text-decoration: none; 
 }
 

@@ -7,8 +7,8 @@ $dbname = "aarele_database";
 $conn = mysqli_connect($servername, $username, $password, $dbname);
 
 if (!$conn) {
-    die("Połączenie nieudane: " . mysqli_connect_error());
+    die("Connection Failed: " . mysqli_connect_error());
 } else {
-    "Sukces";
+    "Успех";
 }
 ?>

@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
   <meta charset="UTF-8">
-  <title>Login</title>
+  <title>Logowanie</title>
   <link href="login.css" rel="stylesheet">
   <script src="check_login.js" defer></script>
   <style>
     #error-message {
-      color: red;
+      color: red; 
       margin-top: 10px;
       text-align: center;
       display: none;
@@ -19,50 +19,50 @@
 <!-- Nawigacja menu -->
 <nav class="navbar">
   <ul class="nav-links">
-    <li class="nav-item"><a href="index.html">Home</a></li>
-    <li class="nav-item"><a href="destinations.html">Destinations</a></li>
-    <li class="nav-item"><a href="about.html">About</a></li>
-    <li class="nav-item"><a href="contact_form.html">Contact</a></li>
-    <li class="nav-item" id="my-account-tab" style="display: none;"><a href="my_account.html">My Account</a></li>
+    <li class="nav-item"><a href="index.html">Strona główna</a></li>
+    <li class="nav-item"><a href="destinations.html">Destynacje</a></li>
+    <li class="nav-item"><a href="about.html">O nas</a></li>
+     <li class="nav-item"><a href="Formularz%20kontaktowy.html">Formularz kontaktowy</a></li>
+    <li class="nav-item" id="my-account-tab" style="display: none;"><a href="my_account.html">Moje konto</a></li>
   </ul>
 </nav>
 
-<!-- Контейнер для формы входа -->
+<!-- Kontener dla formularza logowania -->
 <div class="container">
   <div class="screen">
     <div class="screen__content">
       <form class="login" id="login-form">
-        <!-- Поле для ввода имени пользователя -->
+        <!-- Pole do wprowadzenia nazwy użytkownika -->
         <div class="login__field">
           <i class="login__icon fas fa-user"></i>
-          <input type="text" class="login__input" placeholder="User name / Email" name="username" required>
+          <input type="text" class="login__input" placeholder="Nazwa użytkownika / Email" name="username" required>
         </div>
 
-        <!-- Поле для ввода пароля -->
+        <!-- Pole do wprowadzenia hasła -->
         <div class="login__field">
           <i class="login__icon fas fa-lock"></i>
-          <input type="password" class="login__input" placeholder="Password" name="password" required>
+          <input type="password" class="login__input" placeholder="Hasło" name="password" required>
         </div>
 
-        <!-- Вывод ошибки -->
+        <!-- Wyświetlanie błędu -->
         <div id="error-message"></div>
 
-        <!-- Кнопка для отправки формы -->
+        <!-- Przycisk do wysłania formularza -->
         <button type="submit" class="button login__submit">
-          <span class="button__text">Log In Now</span>
+          <span class="button__text">Zaloguj się</span>
           <i class="button__icon fas fa-chevron-right"></i>
         </button>
       </form>
 
-      <!-- Ссылка на страницу регистрации -->
+      <!-- Link do strony rejestracji -->
       <div class="social-login">
         <a href="register.html" class="register-button">
-          <h3>Register now</h3>
+          <h3>Zarejestruj się</h3>
         </a>
       </div>
     </div>
 
-    <!-- Фон с анимациями -->
+    <!-- Tło z animacjami -->
     <div class="screen__background">
       <span class="screen__background__shape screen__background__shape4"></span>
       <span class="screen__background__shape screen__background__shape3"></span>
@@ -85,21 +85,26 @@
         body: formData
       });
 
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
+      const responseText = await response.text();
+      console.log('Raw response:', responseText);
 
-      const data = await response.json();
+      let data;
+      try {
+        data = JSON.parse(responseText);
+      } catch (parseError) {
+        console.error('Error parsing JSON:', parseError);
+        throw new Error('Invalid JSON response');
+      }
 
       if (data.success) {
         window.location.href = 'my_account.html';
       } else {
-        errorMessage.textContent = data.message || 'Invalid username or password!';
+        errorMessage.textContent = data.message || 'Nieprawidłowa nazwa użytkownika lub hasło!';
         errorMessage.style.display = 'block';
       }
     } catch (error) {
       console.error('Error:', error);
-      errorMessage.textContent = 'An error occurred. Please try again.';
+      errorMessage.textContent = 'Wystąpił błąd. Proszę spróbować ponownie.';
       errorMessage.style.display = 'block';
     }
   });
@@ -107,4 +112,5 @@
 
 </body>
 </html>
+
 
