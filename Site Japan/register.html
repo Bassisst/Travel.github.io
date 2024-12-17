@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Rejestracja</title>
+  <title>Register</title>
   <link href="login.css" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
@@ -16,23 +16,24 @@
           dataType: 'json',
           success: function(response) {
             if (response.success) {
-              $('#registrationMessage').text('Użytkownik został pomyślnie zarejestrowany!').css('color', 'green');
+              $('#registrationMessage').text('Użytkownik zarejestrował się pomyślnie!').css('color', 'green');
               $('#registerForm')[0].reset();
             } else {
-              $('#registrationMessage').text('Błąd rejestracji: ' + response.message).css('color', 'red');
+              $('#registrationMessage').text('Rejestracja nie powiodła się: ' + response.message).css('color', 'red');
             }
           },
           error: function() {
-            $('#registrationMessage').text('Wystąpił błąd. Proszę spróbować ponownie.').css('color', 'red');
+            $('#registrationMessage').text('').css('color', 'red');
           }
         });
       });
     });
   </script>
+
 </head>
 <body>
 
-<!-- Nawigacja menu -->
+<!-- Nawigacja w menu -->
 <nav class="navbar">
   <ul class="nav-links">
     <li class="nav-item"><a href="index.html">Strona główna</a></li>
@@ -42,20 +43,20 @@
   </ul>
 </nav>
 
-<!-- Kontener główny -->
+<!-- Główny pojemnik -->
 <div class="container">
   <div class="screen">
     <div class="screen__content">
-      <!-- Formularz rejestracji -->
+      <!-- Formularz rejestracyjny -->
       <form id="registerForm" class="login">
         <div class="login__field">
           <i class="login__icon fas fa-user"></i>
-          <input type="text" id="username" name="username" class="login__input" placeholder="Nazwa użytkownika" required>
+          <input type="text" id="username" name="username" class="login__input" placeholder="User name" required>
         </div>
 
         <div class="login__field">
           <i class="login__icon fas fa-lock"></i>
-          <input type="password" id="password" name="password" class="login__input" placeholder="Hasło" required>
+          <input type="password" id="password" name="password" class="login__input" placeholder="Password" required>
         </div>
 
         <div class="login__field">
@@ -64,7 +65,7 @@
         </div>
 
         <button type="submit" class="button login__submit">
-          <span class="button__text">Zarejestruj się</span>
+          <span class="button__text">Register now</span>
           <i class="button__icon fas fa-chevron-right"></i>
         </button>
       </form>
@@ -72,15 +73,15 @@
       <!-- Link do logowania -->
       <div class="social-login">
         <a href="login.html" class="register-button">
-          <h3>Zaloguj się</h3>
+          <h3>Login now</h3>
         </a>
       </div>
 
-      <!-- Komunikat o rejestracji -->
+      <!-- Komunikat rejestracyjny -->
       <div id="registrationMessage" class="registration-message"></div>
     </div>
 
-    <!-- Tło z animacją -->
+
     <div class="screen__background">
       <span class="screen__background__shape screen__background__shape4"></span>
       <span class="screen__background__shape screen__background__shape3"></span>
@@ -92,4 +93,5 @@
 
 </body>
 </html>
+
 
